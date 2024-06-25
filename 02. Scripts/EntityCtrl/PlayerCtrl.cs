@@ -8,8 +8,8 @@ public class PlayerCtrl : MonoBehaviour
     public Rigidbody2D m_rigidbody;
     public Transform m_transform;
     public float m_move_speed = 80.0f;
-    public float m_axis_h;
     public Animator m_animator;
+    public JoyStickValue m_value;
 
     // 상태 패턴을 위한 State와 Context 선언
     private IPlayerState m_stop_state, m_move_state, m_dead_state;
@@ -52,18 +52,11 @@ public class PlayerCtrl : MonoBehaviour
         set { m_transform.rotation = value; }
     }
 
-    public float AxisH
-    {
-        get { return m_axis_h; }
-        set { m_axis_h = value; }
-    }
-
     void Update()
     {
-        m_axis_h = Input.GetAxis("Horizontal");
-        if(m_axis_h > 0f)
+        if(m_value.m_joy_touch.x > 0f)
             PlayerDirection = Quaternion.Euler(0f, 0f, 0f);
-        else if(m_axis_h < 0f)
+        else if(m_value.m_joy_touch.x < 0f)
             PlayerDirection = Quaternion.Euler(0f, 180f, 0f);
 
         SetPlayerMoveAnimation();
@@ -73,7 +66,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         if(GameManager.game_state != GameManager.GameState.DEAD)
         {
-            if(m_axis_h == 0f)
+            if(m_value.m_joy_touch == Vector2.zero)
                 StopPlayer();
             else
                 MovePlayer();

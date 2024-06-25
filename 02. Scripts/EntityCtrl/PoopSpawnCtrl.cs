@@ -14,7 +14,7 @@ public class PoopSpawnCtrl : MonoBehaviour
 
     void MakePoop()
     {
-        GameObject poop = Instantiate(m_poop, this.gameObject.GetComponent<Transform>().position + new Vector3(Random.Range(-2.5f, 2.6f), 0, 0), Quaternion.identity);
+        GameObject poop = Instantiate(m_poop, this.gameObject.GetComponent<Transform>().position + new Vector3(Random.Range(-2f, 2.1f), 0, 0), Quaternion.identity);
 
         float rand_scale_seed = Random.Range(3.0f, 5.1f);
         poop.GetComponent<Transform>().localScale = new Vector2(rand_scale_seed, rand_scale_seed);

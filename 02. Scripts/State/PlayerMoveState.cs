@@ -20,7 +20,7 @@ namespace _State
         void FixedUpdate()
         {
             m_player_ctrl.m_rigidbody.velocity = 
-                    new Vector2(m_player_ctrl.m_axis_h * 
+                    new Vector2(m_player_ctrl.m_value.m_joy_touch.x * 
                                 m_player_ctrl.m_move_speed * 
                                 Time.deltaTime, 
                                 m_player_ctrl.m_rigidbody.velocity.y); 
