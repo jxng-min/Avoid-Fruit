@@ -1,0 +1,218 @@
+fileFormatVersion: 2
+guid: 5aaab128c361ca942807192ec8a017f5
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dino_Img_11
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 26
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d4f25314fa194459de74d86708d3be
+      internalID: -1089624438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Dino_Img_4: 1694744178
+      Dino_Img_7: -641803605
+      Dino_Img_25: 1378974432
+      Dino_Img_21: 279875356
+      Dino_Img_26: -412976498
+      Dino_Img_24: -1901427220
+      Dino_Img_18: 1634604209
+      Dino_Img_44: -327445328
+      Dino_Img_9: -333316699
+      Dino_Img_31: -280748284
+      Dino_Img_13: 221766317
+      Dino_Img_33: -401812324
+      Dino_Img_42: 625092382
+      Dino_Img_2: 1885865621
+      Dino_Img_17: 2074356166
+      Dino_Img_45: -185098594
+      Dino_Img_11: -1089624438
+      Dino_Img_16: 167981921
+      Dino_Img_14: 1093024570
+      Dino_Img_30: 592952418
+      Dino_Img_1: -930225075
+      Dino_Img_43: -1207046644
+      Dino_Img_49: 1681670655
+      Dino_Img_27: -1393714036
+      Dino_Img_3: -1678087204
+      Dino_Img_12: -38483306
+      Dino_Img_32: 1625992595
+      Dino_Img_23: 1848936024
+      Dino_Img_48: 30052140
+      Dino_Img_39: 194796785
+      Dino_Img_34: 996911561
+      Dino_Img_5: -253438549
+      Dino_Img_46: 1010490992
+      Dino_Img_28: -1932004888
+      Dino_Img_22: 125505573
+      Dino_Img_19: -965388092
+      Dino_Img_40: 1639602048
+      Dino_Img_35: -2051398967
+      Dino_Img_47: -1384457275
+      Dino_Img_15: -825020760
+      Dino_Img_8: -1434880578
+      Dino_Img_10: -166191182
+      Dino_Img_29: 1935788341
+      Dino_Img_38: 1905615957
+      Dino_Img_6: -1767497299
+      Dino_Img_41: -1320533490
+      Dino_Img_37: -1204608904
+      Dino_Img_20: -1580443421
+      Dino_Img_0: 2069668503
+      Dino_Img_36: -1682816662
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

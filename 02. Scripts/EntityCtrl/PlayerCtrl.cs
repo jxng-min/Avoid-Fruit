@@ -62,6 +62,18 @@ public class PlayerCtrl : MonoBehaviour
         SetPlayerMoveAnimation();
     }
 
+    void FixedUpdate()
+    {
+        float joy_value = 0f;
+        if(m_value.m_joy_touch.x < 0.0f)
+            joy_value = -1f;
+        else if(m_value.m_joy_touch.x > 0.0f)
+            joy_value = 1f;
+            
+        m_rigidbody.velocity = 
+                new Vector2(joy_value * m_move_speed * Time.deltaTime, m_rigidbody.velocity.y); 
+    }
+
     void SetPlayerMoveAnimation()
     {
         if(GameManager.game_state != GameManager.GameState.DEAD)

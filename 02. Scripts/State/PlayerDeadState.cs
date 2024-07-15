@@ -15,7 +15,7 @@ namespace _State
             m_player_ctrl.m_animator.SetTrigger("Dead");
             Debug.Log("게임 오버 상태 호출됨");
 
-            Invoke("SetPlayerDead", 0.2f);
+            Invoke("SetPlayerDead", 0.5f);
         }
 
         void SetPlayerDead()

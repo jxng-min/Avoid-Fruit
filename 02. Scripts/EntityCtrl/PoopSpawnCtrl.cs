@@ -1,28 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PoopSpawnCtrl : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject m_poop;
+    public GameObject[] m_fruits;
+
+    private GameObject m_cur_fruit;
 
     void Start()
     {  
-        MakePoop();
+        MakeFruit();
     }
 
-    void MakePoop()
+    void MakeFruit()
     {
-        GameObject poop = Instantiate(m_poop, this.gameObject.GetComponent<Transform>().position + new Vector3(Random.Range(-2f, 2.1f), 0, 0), Quaternion.identity);
+        m_cur_fruit = m_fruits[Random.Range(0, m_fruits.Length)];
+        GameObject poop = Instantiate(m_cur_fruit, this.gameObject.GetComponent<Transform>().position + new Vector3(Random.Range(-2f, 2.1f), 0, 0), Quaternion.identity);
 
-        float rand_scale_seed = Random.Range(3.0f, 5.1f);
+        float rand_scale_seed = Random.Range(0.3f, 0.8f);
         poop.GetComponent<Transform>().localScale = new Vector2(rand_scale_seed, rand_scale_seed);
 
         float rand_gravity_seed = Random.Range(1f, 10f);
         poop.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         poop.GetComponent<Rigidbody2D>().velocity = Vector2.down * rand_gravity_seed; 
 
-        Invoke("MakePoop", Random.Range(0f, 0.6f));
+        Invoke("MakeFruit", Random.Range(0f, 0.6f));
     }
 }

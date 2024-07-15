@@ -16,14 +16,5 @@ namespace _State
             m_player_ctrl.m_animator.SetBool("IsMove", true);
             Debug.Log("이동 상태 호출됨");
         }
-        
-        void FixedUpdate()
-        {
-            m_player_ctrl.m_rigidbody.velocity = 
-                    new Vector2(m_player_ctrl.m_value.m_joy_touch.x * 
-                                m_player_ctrl.m_move_speed * 
-                                Time.deltaTime, 
-                                m_player_ctrl.m_rigidbody.velocity.y); 
-        }
     }
 }
