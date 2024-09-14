@@ -78,6 +78,7 @@ public class GameManager : Singleton<GameManager>
         GameObject[] fruits = GameObject.FindGameObjectsWithTag("POOP");
         foreach(GameObject fruit in fruits)
             fruit.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        m_fruit_velocity_vec.Clear();
 
         m_dead_panel.SetActive(true);
     }

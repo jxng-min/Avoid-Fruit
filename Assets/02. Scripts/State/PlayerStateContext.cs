@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _State
 {
-    public class PlayerStateContext : MonoBehaviour
+    public class PlayerStateContext
     {
         public IPlayerState CurrentState
         {

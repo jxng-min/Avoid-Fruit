@@ -12,8 +12,8 @@ public class SoundManager : Singleton<SoundManager>
 
     private void Start()
     {
-        m_button_click = Resources.Load<AudioClip>("Sounds/Button_Click");
-        m_player_die = Resources.Load<AudioClip>("Sounds/Player_Die");
+        m_button_click = Resources.Load<AudioClip>("07. Sounds/Button_Click");
+        m_player_die = Resources.Load<AudioClip>("07. Sounds/Player_Die");
     }
 
     public void ButtonClick()
