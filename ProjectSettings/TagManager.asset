@@ -8,6 +8,7 @@ TagManager:
   - POOP
   - PAUSE_PANEL
   - DEAD_PANEL
+  - JOYSTICK
   layers:
   - Default
   - TransparentFX

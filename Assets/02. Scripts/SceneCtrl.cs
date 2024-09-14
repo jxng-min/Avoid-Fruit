@@ -1,3 +1,4 @@
+using _EventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,7 @@ public class SceneCtrl : MonoBehaviour
 
     public void SwitchScene()
     {
-        Time.timeScale = 1.0f;
+        GameEventBus.Publish(GameEventType.SETTING);
         SceneManager.LoadScene(m_scene_name);
     }
 }

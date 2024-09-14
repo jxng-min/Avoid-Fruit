@@ -1,116 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using _Singleton;
 
-[System.Serializable]
-public class Sound
+public class SoundManager : Singleton<SoundManager>
 {
-    public string m_name;
-    public AudioClip m_clip;
-}
+    public AudioSource m_effect;
 
-public class SoundManager : MonoBehaviour
-{
-    #region  singleton
-    static public SoundManager m_instance;
+    private AudioClip m_button_click;
+    private AudioClip m_player_die;
 
-    private void Awake()
+    private void Start()
     {
-        if(m_instance == null)
-        {
-            m_instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-            Destroy(this.gameObject);
-    }
-    #endregion singleton
-
-    [SerializeField]
-    private Sound[] m_effect_sounds;
-    [SerializeField]
-    private Sound[] m_bgm_sounds;
-
-    [SerializeField]
-    private AudioSource m_audio_source_bfm;
-    [SerializeField]
-    private AudioSource[] m_audio_source_effects;
-
-    [SerializeField]
-    private string[] m_play_sound_name;
-
-    void Start()
-    {
-        m_play_sound_name = new string[m_audio_source_effects.Length];
+        m_button_click = Resources.Load<AudioClip>("Sounds/Button_Click");
+        m_player_die = Resources.Load<AudioClip>("Sounds/Player_Die");
     }
 
-    public void PlaySE(string _name)
+    public void ButtonClick()
     {
-        for(int i = 0; i < m_effect_sounds.Length; i++)
-        {
-            if(_name == m_effect_sounds[i].m_name)
-            {
-                for(int j = 0; j < m_audio_source_effects.Length; j++)
-                {
-                    if(!m_audio_source_effects[j].isPlaying)
-                    {
-                        m_audio_source_effects[j].clip = m_effect_sounds[i].m_clip;
-                        m_audio_source_effects[j].Play();
-                        m_play_sound_name[j] = m_effect_sounds[i].m_name;
-                        return;
-                    }
-                }
-                Debug.Log("모든 가용 AudioSource가 사용 중입니다.");
-                return;
-            }
-        }
-        Debug.Log(_name + "사운드가 SoundManager에 등록되지 않았습니다.");
+        m_effect.PlayOneShot(m_button_click);
     }
 
-    public void PlayerBGM(string _name)
+    public void PlayerDie()
     {
-        for(int i = 0; i < m_bgm_sounds.Length; i++)
-        {
-            if(_name == m_bgm_sounds[i].m_name)
-            {
-                m_audio_source_bfm.clip = m_bgm_sounds[i].m_clip;
-                m_audio_source_bfm.Play();
-                return;
-            }
-        }
-        Debug.Log(_name + "사운드가 SoundManager에 등록되지 않았습니다.");
-    }
-
-    public void StopAllSE()
-    {
-        for(int i = 0; i < m_audio_source_effects.Length; i++)
-        {
-            m_audio_source_effects[i].Stop();
-        }
-    }
-
-    public void StopSE(string _name)
-    {
-        for(int i = 0; i < m_audio_source_effects.Length; i++)
-        {
-            if(m_play_sound_name[i] == _name)
-            {
-                m_audio_source_effects[i].Stop();
-                break;
-            }
-        }
-        Debug.Log("재생 중인" + _name + "사운드가 없습니다.");
-    }
-
-    public void SetBGMVolume(float volume)
-    {
-        m_audio_source_bfm.volume = volume;
-    }
-
-    public void SetSEVolume(float volume)
-    {
-        for(int i = 0; i < m_audio_source_effects.Length; i++)
-            m_audio_source_effects[i].volume = volume;
+        m_effect.PlayOneShot(m_player_die);
     }
 }

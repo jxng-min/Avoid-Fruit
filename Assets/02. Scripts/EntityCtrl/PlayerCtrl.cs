@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _EventBus;
 using _State;
 using UnityEngine;
 
@@ -11,12 +12,37 @@ public class PlayerCtrl : MonoBehaviour
     public Animator m_animator;
     public JoyStickValue m_value;
 
-    // 상태 패턴을 위한 State와 Context 선언
     private IPlayerState m_stop_state, m_move_state, m_dead_state;
     private PlayerStateContext m_player_state_context;
 
-    void Start()
+    private Quaternion PlayerDirection
     {
+        get { return m_transform.rotation; }
+        set { m_transform.rotation = value; }
+    }
+
+    private void OnEnable()
+    {
+        GameEventBus.Subscribe(GameEventType.SETTING, GameManager.Instance.Setting);
+        GameEventBus.Subscribe(GameEventType.PLAYING, GameManager.Instance.Playing);
+        GameEventBus.Subscribe(GameEventType.PAUSE, GameManager.Instance.Pause);
+        GameEventBus.Subscribe(GameEventType.DEAD, GameManager.Instance.Dead);
+
+        GameEventBus.Publish(GameEventType.PLAYING);
+    }
+
+    private void OnDisable()
+    {
+        GameEventBus.Unsubscribe(GameEventType.SETTING, GameManager.Instance.Setting);
+        GameEventBus.Unsubscribe(GameEventType.PLAYING, GameManager.Instance.Playing);
+        GameEventBus.Unsubscribe(GameEventType.PAUSE, GameManager.Instance.Pause);
+        GameEventBus.Unsubscribe(GameEventType.DEAD, GameManager.Instance.Dead);
+    }
+
+    private void Start()
+    {
+        GameEventBus.Publish(GameEventType.PLAYING);
+
         m_player_state_context = new PlayerStateContext(this);
 
         m_stop_state = gameObject.AddComponent<PlayerStopState>();
@@ -24,11 +50,32 @@ public class PlayerCtrl : MonoBehaviour
         m_dead_state = gameObject.AddComponent<PlayerDeadState>();
 
         m_player_state_context.Transition(m_stop_state);
-
-        GameManager.game_state = GameManager.GameState.PLAYING; 
+ 
         m_rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
         m_transform = this.gameObject.GetComponent<Transform>();
         m_animator = this.gameObject.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if(m_value.m_joy_touch.x > 0f)
+            PlayerDirection = Quaternion.Euler(0f, 0f, 0f);
+        else if(m_value.m_joy_touch.x < 0f)
+            PlayerDirection = Quaternion.Euler(0f, 180f, 0f);
+
+        SetPlayerMoveAnimation();
+    }
+
+    private void FixedUpdate()
+    {
+        float joy_value = 0f;
+        if(m_value.m_joy_touch.x < 0.0f)
+            joy_value = -1f;
+        else if(m_value.m_joy_touch.x > 0.0f)
+            joy_value = 1f;
+            
+        m_rigidbody.velocity = 
+                new Vector2(joy_value * m_move_speed * Time.deltaTime, m_rigidbody.velocity.y); 
     }
 
     public void StopPlayer()
@@ -46,56 +93,21 @@ public class PlayerCtrl : MonoBehaviour
         m_player_state_context.Transition(m_dead_state);
     }
 
-    public Quaternion PlayerDirection
+    private void SetPlayerMoveAnimation()
     {
-        get { return m_transform.rotation; }
-        set { m_transform.rotation = value; }
-    }
-
-    void Update()
-    {
-        if(m_value.m_joy_touch.x > 0f)
-            PlayerDirection = Quaternion.Euler(0f, 0f, 0f);
-        else if(m_value.m_joy_touch.x < 0f)
-            PlayerDirection = Quaternion.Euler(0f, 180f, 0f);
-
-        SetPlayerMoveAnimation();
-    }
-
-    void FixedUpdate()
-    {
-        float joy_value = 0f;
-        if(m_value.m_joy_touch.x < 0.0f)
-            joy_value = -1f;
-        else if(m_value.m_joy_touch.x > 0.0f)
-            joy_value = 1f;
-            
-        m_rigidbody.velocity = 
-                new Vector2(joy_value * m_move_speed * Time.deltaTime, m_rigidbody.velocity.y); 
-    }
-
-    void SetPlayerMoveAnimation()
-    {
-        if(GameManager.game_state != GameManager.GameState.DEAD)
-        {
+        if(GameManager.Instance.State == GameManager.GameState.PLAYING)
             if(m_value.m_joy_touch == Vector2.zero)
                 StopPlayer();
             else
                 MovePlayer();
-        }
-    }
-
-    void SetPlayerDeadAnimation()
-    {
-        DeadPlayer();
     }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
         if(coll.gameObject.CompareTag("POOP"))
         {
-            SetPlayerDeadAnimation();
-            this.gameObject.GetComponent<SECallCtrl>().Click();
+            GameEventBus.Publish(GameEventType.DEAD);
+            SoundManager.Instance.PlayerDie();
         }
     }
 }
