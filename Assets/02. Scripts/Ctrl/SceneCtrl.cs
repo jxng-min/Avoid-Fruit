@@ -10,6 +10,7 @@ public class SceneCtrl : MonoBehaviour
     public void SwitchScene()
     {
         GameEventBus.Publish(GameEventType.SETTING);
+        SoundManager.Instance.ButtonClick();
         SceneManager.LoadScene(m_scene_name);
     }
 }
