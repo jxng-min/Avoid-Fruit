@@ -1,4 +1,4 @@
 # Avoid-Poop
 
-### Class Diagram
+### Game System Architecture
 ![Uploading Avoid_Fruit.png…]()
