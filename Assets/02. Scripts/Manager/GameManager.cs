@@ -4,6 +4,8 @@ using System.ComponentModel;
 using _Singleton;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using System;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -81,5 +83,7 @@ public class GameManager : Singleton<GameManager>
         m_fruit_velocity_vec.Clear();
 
         m_dead_panel.SetActive(true);
+
+        WebSocketClient.Instance.Send();
     }
 }

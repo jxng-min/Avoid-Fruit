@@ -14,7 +14,6 @@ namespace _State
                 m_player_ctrl = player_ctrl;
 
             m_player_ctrl.m_animator.SetBool("IsMove", true);
-            Debug.Log("이동 상태 호출됨");
         }
     }
 }
