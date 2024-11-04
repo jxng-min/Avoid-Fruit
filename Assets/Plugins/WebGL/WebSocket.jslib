@@ -1,5 +1,5 @@
 mergeInto(LibraryManager.library, {
-    RequestUserId: function() {
+    RequestUserId: async function() {
         const token = localStorage.getItem("accessToken");
         console.log("Retrieved token:", token);
 
@@ -8,23 +8,22 @@ mergeInto(LibraryManager.library, {
             return;
         }
 
-        return fetch("http://3.34.98.225:8080/api/v1/game/userId", {
+        const response = await fetch("http://3.34.98.225:8080/api/v1/game/userId", {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
             }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("유저 ID 요청에 실패했습니다.");
-            }
-            return response.json();
-        })
-        .then(data => {
-            const userId = data.payload;
-            console.log(userId);
-            return userId;
         });
+
+        if (!response.ok) {
+            throw new Error("유저 ID 요청에 실패했습니다.");
+        }
+
+        const data = await response.json();
+        const userId = data.payload;
+        console.log("받은 유저 ID: ", userId);
+
+        return userId;
     },
 
     SendData: function(json_data) {
