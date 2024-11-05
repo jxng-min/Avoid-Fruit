@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
+using System.Net;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -84,7 +85,7 @@ public class GameManager : Singleton<GameManager>
 
         m_dead_panel.SetActive(true);
 
-        WebSocketClient.Instance.m_data.score = Convert.ToInt32(TimerCtrl.m_play_time);
-        WebSocketClient.Instance.Send();
+        WebClient.Instance.m_data.score = Convert.ToInt32(TimerCtrl.m_play_time);
+        WebClient.Instance.Send();
     }
 }
