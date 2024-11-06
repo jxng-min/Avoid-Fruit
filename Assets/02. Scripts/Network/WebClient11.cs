@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using _Singleton;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-
 
 #if UNITY_WEBGL
 using System.Runtime.InteropServices;
@@ -17,11 +15,9 @@ public class PlayerData
     public int score;
 }
 
-public class WebClient : Singleton<WebClient>
+public class WebClient11 : Singleton<WebClient11>
 {
     public PlayerData m_data;
-    
-    private static long m_user_id = 0;
 
     [DllImport("__Internal")]
     private static extern long RequestUserId();
@@ -32,22 +28,19 @@ public class WebClient : Singleton<WebClient>
     private void Start()
     {
         m_data = new PlayerData();
-
-    if (Application.platform == RuntimePlatform.WebGLPlayer)
-        RequestUserId();
-
-        m_data.userId = m_user_id;
         m_data.gameCategory = "Fruit";
-        Debug.Log("Unity에서 받은 유저 ID: " + m_data.userId);
+
+    #if UNITY_WEBGL && !UNITY_EDITOR
+        RequestUserId();
+    #endif
     }
-    
-    public void OnUserIdReceived(string userIdString)
+
+    public void OnUserIdReceived(string userId)
     {
-        if (long.TryParse(userIdString, out long user_id))
-            m_data.userId = user_id;
-        else
-            Debug.LogError("유저 ID 변환에 실패했습니다.");
+        if (long.TryParse(userId, out long parsedUserId))
+            m_data.userId = parsedUserId;
     }
+
     public void Send()
     {
     #if UNITY_WEBGL && !UNITY_EDITOR

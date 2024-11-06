@@ -24,7 +24,7 @@ mergeInto(LibraryManager.library, {
             const userId = data.payload;
             console.log("받은 유저 ID:", userId);
 
-            unityInstance.SendMessage("WebClient", "OnUserIdReceived", userId.toString());
+            unityInstance.SendMessage("WebClient11", "OnUserIdReceived", userId.toString());
         })
         .catch(error => {
             console.error("유저 ID 요청 중 오류 발생:", error);
