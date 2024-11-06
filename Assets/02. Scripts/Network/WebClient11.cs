@@ -20,7 +20,7 @@ public class WebClient11 : Singleton<WebClient11>
     public PlayerData m_data;
 
     [DllImport("__Internal")]
-    private static extern long RequestUserId();
+    private static extern void RequestUserId();
 
     [DllImport("__Internal")]
     private static extern void SendData(string json_data);
@@ -35,10 +35,10 @@ public class WebClient11 : Singleton<WebClient11>
     #endif
     }
 
-    public void OnUserIdReceived(string userId)
+    public void OnUserIdReceived(string user_id)
     {
-        if (long.TryParse(userId, out long parsedUserId))
-            m_data.userId = parsedUserId;
+        if (long.TryParse(user_id, out long parsed_user_id))
+            m_data.userId = parsed_user_id;
     }
 
     public void Send()
