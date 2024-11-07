@@ -85,7 +85,6 @@ public class GameManager : Singleton<GameManager>
 
         m_dead_panel.SetActive(true);
 
-        WebClient11.Instance.m_data.score = Convert.ToInt32(TimerCtrl.m_play_time);
-        WebClient11.Instance.Send();
+        WebClient11.Instance.Send(Convert.ToInt32(TimerCtrl.m_play_time));
     }
 }
