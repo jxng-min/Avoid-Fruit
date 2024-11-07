@@ -8,6 +8,8 @@ using Unity.VisualScripting;
 public class TimerCtrl : MonoBehaviour
 {
     public static float m_play_time;
+    public TMP_Text m_text;
+
     void Update()
     {
         if(GameManager.Instance.State == GameManager.GameState.PLAYING)
@@ -16,6 +18,8 @@ public class TimerCtrl : MonoBehaviour
                 m_play_time = 999f;
             else
                 m_play_time += Time.deltaTime;
+
+            m_text.text = m_play_time.ToString("000");
         }
 
     }
