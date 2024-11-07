@@ -23,7 +23,7 @@ public class WebClient11 : Singleton<WebClient11>
     {
         ScoreData score_data = new ScoreData();
         score_data.score = score;
-        Debug.Log(JsonUtility.ToJson(score_data));
+        Debug.Log("Unity send: " + JsonUtility.ToJson(score_data));
 
     #if UNITY_WEBGL && !UNITY_EDITOR
         SendData(JsonUtility.ToJson(score_data));

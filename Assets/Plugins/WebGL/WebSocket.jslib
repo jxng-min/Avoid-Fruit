@@ -3,10 +3,11 @@ mergeInto(LibraryManager.library, {
         const token = localStorage.getItem("accessToken");
         console.log("Retrieved token:", token);
 
-        let userId = 2;
+        var userId = 2;
 
         if (!token) {
             console.error("토큰이 없습니다. 로그인 후 다시 시도하세요.");
+            return;
         }
 
         fetch("http://3.34.98.225:8080/api/v1/game/userId", {
@@ -28,19 +29,16 @@ mergeInto(LibraryManager.library, {
         .catch(error => {
             console.error("유저 ID 요청 중 오류 발생:", error);
         });
-
-        if (typeof json_data !== "string") {
-            json_data = String(json_data);  // 숫자형을 문자열로 변환
-        }
         
-        console.log("Received JSON string:", json_data);
-        const data = JSON.parse(json_data);
-        console.log("Data to send:", data);
+        var tempScore = UTF8ToString(json_data);
+        var jsonScore = JSON.parse(tempScore);
+        var userScore = jsonScore.score;
+        console.log("score: ", userScore);
 
         const jsonData = JSON.stringify({
             userId: userId,
             gameCategory: "Fruit",
-            score: data.score
+            score: userScore,
         });
         console.log("JSON Data to send:", jsonData);
 
