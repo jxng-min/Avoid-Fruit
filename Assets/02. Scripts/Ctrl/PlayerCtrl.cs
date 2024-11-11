@@ -74,8 +74,8 @@ public class PlayerCtrl : MonoBehaviour
         else if(m_value.m_joy_touch.x > 0.0f)
             joy_value = 1f;
             
-        m_rigidbody.velocity = 
-                new Vector2(joy_value * m_move_speed * Time.deltaTime, m_rigidbody.velocity.y); 
+        m_rigidbody.linearVelocity = 
+                new Vector2(joy_value * m_move_speed * Time.deltaTime, m_rigidbody.linearVelocity.y); 
     }
 
     public void StopPlayer()

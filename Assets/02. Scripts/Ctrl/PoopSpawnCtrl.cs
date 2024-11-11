@@ -25,7 +25,7 @@ public class PoopSpawnCtrl : MonoBehaviour
 
             float rand_gravity_seed = Random.Range(1f, 10f);
             fruit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            fruit.GetComponent<Rigidbody2D>().velocity = Vector2.down * rand_gravity_seed; 
+            fruit.GetComponent<Rigidbody2D>().linearVelocity = Vector2.down * rand_gravity_seed; 
         }
         Invoke("MakeFruit", Random.Range(0f, 0.6f));
     }

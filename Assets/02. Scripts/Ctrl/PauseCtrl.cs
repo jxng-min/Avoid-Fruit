@@ -23,7 +23,7 @@ public class PauseCtrl : MonoBehaviour
 
             GameObject[] fruits = GameObject.FindGameObjectsWithTag("POOP");
             for(int i = 0; i < GameManager.Instance.m_fruit_velocity_vec.Count; i++)
-                fruits[i].GetComponent<Rigidbody2D>().velocity = GameManager.Instance.m_fruit_velocity_vec[i];
+                fruits[i].GetComponent<Rigidbody2D>().linearVelocity = GameManager.Instance.m_fruit_velocity_vec[i];
             GameManager.Instance.m_fruit_velocity_vec.Clear();
 
             GameEventBus.Publish(GameEventType.PLAYING);

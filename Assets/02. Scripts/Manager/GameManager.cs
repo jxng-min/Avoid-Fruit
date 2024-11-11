@@ -54,13 +54,13 @@ public class GameManager : Singleton<GameManager>
         State = GameState.PAUSE;
 
         PlayerCtrl player_ctrl = GameObject.FindObjectOfType<PlayerCtrl>();
-        player_ctrl.m_rigidbody.velocity = new Vector2(0f, 0f);
+        player_ctrl.m_rigidbody.linearVelocity = new Vector2(0f, 0f);
 
         GameObject[] fruits = GameObject.FindGameObjectsWithTag("POOP");
         for(int i = 0; i < fruits.Length; i++)
         {
-            m_fruit_velocity_vec.Add(fruits[i].GetComponent<Rigidbody2D>().velocity);
-            fruits[i].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            m_fruit_velocity_vec.Add(fruits[i].GetComponent<Rigidbody2D>().linearVelocity);
+            fruits[i].GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         }
         m_pause_panel.SetActive(true);
     }
@@ -75,12 +75,12 @@ public class GameManager : Singleton<GameManager>
         m_joy_value.m_joy_touch = Vector2.zero;
 
         PlayerCtrl player_ctrl = FindObjectOfType<PlayerCtrl>();
-        player_ctrl.m_rigidbody.velocity = Vector2.zero;
+        player_ctrl.m_rigidbody.linearVelocity = Vector2.zero;
         player_ctrl.DeadPlayer();
 
         GameObject[] fruits = GameObject.FindGameObjectsWithTag("POOP");
         foreach(GameObject fruit in fruits)
-            fruit.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            fruit.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         m_fruit_velocity_vec.Clear();
 
         m_dead_panel.SetActive(true);
