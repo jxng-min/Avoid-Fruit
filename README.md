@@ -24,6 +24,10 @@
 
 [Google Drive](https://drive.google.com/drive/folders/17TO9SBEJuQZ0URslGeztkWA5GJQeiTkO?usp=drive_link)
 
+```
+플레이 시, 유효한 토큰이 있어야만 합니다.
+```
+
 <br>
 </br>
 
